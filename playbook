@@ -1,0 +1,14 @@
+---
+- hosts: development , production
+  become: true
+  tasks:
+  - name: deploy config file on remote hosts
+    copy:
+      src: app-config.conf
+      dest: /etc/app-config.conf
+
+  - name: change file ownership and permissions
+    file:
+      path: /etc/app-config.conf
+      owner: root
+      mode: 0644
